@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Author: Cabbache
+# This is a standalone bash script that uses 'curl' and 'jq' to extract
+# all text from comments or post titles of a specific user
+
+if [ $# -ne 1 ]
+then
+	echo "Usage: /dump_all_text <reddit username>"
+	exit
+fi
+
+USER=$1
+USERAGENT='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/605.1.15 (KHTML, like Gecko)'
+echo "Dumping text of $USER"
+curl -sA "$USERAGENT" "https://api.reddit.com/user/$USER/submitted?limit=99999999" |
+jq -r '.data.children[].data | "\(.title) \(.selftext)"'
+curl -sA "$USERAGENT" "https://api.reddit.com/user/$USER/comments?limit=99999999" |
+jq -r '.data.children[].data.body'
