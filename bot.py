@@ -12,7 +12,7 @@ from io import StringIO
 from html.parser import HTMLParser
 
 from telegram import Update, ParseMode
-from telegram.ext import Updater, CommandHandler, CallbackContext, PicklePersistence
+from telegram.ext import Updater, CommandHandler, CallbackContext, PicklePersistence, Filters, MessageHandler
 
 # Enable logging
 logging.basicConfig(
@@ -323,7 +323,7 @@ def main() -> None:
 	dispatcher.add_handler(CommandHandler("dump", dump_user_data))
 	dispatcher.add_handler(CommandHandler("regclear", clear_regex))
 	dispatcher.add_handler(CommandHandler("regshow", show_regex))
-	dispatcher.add_handler(CommandHandler("help", help_command))
+	dispatcher.add_handler(MessageHandler(Filters.all, help_command))
 
 	# Start the Bot
 	updater.start_polling()
