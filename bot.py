@@ -1,6 +1,4 @@
 #!/usr/bin/env python
-# pylint: disable=C0116,W0613
-# This program is dedicated to the public domain under the CC0 license.
 
 import logging
 import requests
@@ -156,6 +154,7 @@ def watch_subreddit(update: Update, context: CallbackContext) -> bool:
 				update.message.reply_text("Invalid regex expression")
 				return False
 		if esub is None:
+			update.message.reply_text("Checking if community exists...")
 			response = getrequest("https://www.reddit.com/r/"+subreddit)
 			if "Sorry, there aren’t any communities on Reddit with that name." in response:
 				update.message.reply_text("Subreddit does not exist")
