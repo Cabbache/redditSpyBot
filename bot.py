@@ -55,11 +55,10 @@ def findSubByName(subreddits, subreddit):
 #https://stackoverflow.com/questions/15940280/how-to-get-utc-time-in-python
 def secondsToText(seconds, granularity=2):
 	intervals = (
+		('years', 24*365*60**2),
 		('weeks', 24*7*60**2),
 		('days', 24*60**2),
-		('hours', 60**2),
-		('minutes', 60),
-		('seconds', 1),
+		('hours', 60**2)
 	)
 	result = []
 
@@ -69,7 +68,7 @@ def secondsToText(seconds, granularity=2):
 			seconds -= value * count
 			if value == 1:
 				name = name.rstrip('s')
-			result.append("{} {}".format(value, name))
+			result.append("{} {}".format(int(value), name))
 	return ', '.join(result[:granularity])
 
 def reddit_poll(context: CallbackContext) -> None:
