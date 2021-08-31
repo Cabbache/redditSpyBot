@@ -15,3 +15,17 @@ Every 5 minutes it gets the newest posts for the specified subreddits and if the
 
 * [python-telegram-bot](https://github.com/python-telegram-bot/python-telegram-bot)
 * requests
+
+### Installation ###
+
+Install the dependencies:
+```console
+pip3 install -r requirements.txt
+```
+
+Generate a token for your bot by talking to the [Telegram bot father](https://t.me/botfather). Change the token in the source code to that of your bot.
+
+Run bot:
+```console
+python3 bot.py
+```
